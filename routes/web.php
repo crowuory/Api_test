@@ -16,3 +16,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'tasks'], function () use ($router) {
+    $router->post('/', 'TaskController@store');       
+    $router->get('/', 'TaskController@index');        
+    $router->get('{id}', 'TaskController@show');      
+    $router->put('{id}', 'TaskController@update');    
+    $router->delete('{id}', 'TaskController@destroy');
+});
